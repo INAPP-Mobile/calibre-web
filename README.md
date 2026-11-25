@@ -52,3 +52,4 @@ Upstream docs: https://github.com/janeczku/calibre-web/wiki
 - **Port:** Railway-injected `PORT` (Calibre-Web reads `CALIBRE_PORT`)
 - **Persistence:** one Railway volume at `/data` (app settings in `/data/config`, Calibre library in `/data/books`)
 - **Healthcheck:** `/login` (login page, unauthenticated)
+- **Sessions:** login sessions use Flask-Login "basic" protection — the entrypoint forces `config_session=0`, because Railway's edge presents a different internal IP per connection and the upstream "strong" mode would log you out on every new connection.
