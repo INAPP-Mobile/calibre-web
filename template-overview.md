@@ -37,6 +37,7 @@ Your books live on your own server instead of a cloud ebook account. The library
 | Persistence | One volume at `/data` (settings in `/data/config`, library in `/data/books`) |
 | Healthcheck | `/login` (login page, unauthenticated) |
 | Deploy form | One generated field (admin password) |
+| Sessions | Flask-Login "basic" protection (entrypoint forces `config_session=0`); Railway's edge IP varies per connection, so the upstream "strong" mode would log users out on every new connection |
 
 ### Deployment Dependencies
 
