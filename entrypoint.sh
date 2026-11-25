@@ -12,6 +12,10 @@
 #   settings database (cps/constants.py: CONFIG_DIR from CALIBRE_DBPATH).
 # - The app will not create a Calibre library itself, so an empty
 #   upstream metadata.db is seeded into /books on first boot.
+# - Session protection is forced to 'basic' (config_session=0): Railway's
+#   edge presents a different internal IP per connection and Calibre-Web
+#   does not translate X-Forwarded-For, so Flask-Login 'strong' would
+#   log the user out on every new connection.
 set -eu
 
 # Railway injects PORT; default to the app's 8083 when run outside Railway.
@@ -84,6 +88,18 @@ if [ -f "$CONFIG_DIR/app.db" ]; then
   sqlite3 "$CONFIG_DIR/app.db" \
     "UPDATE settings SET config_kepubifypath='/usr/bin/kepubify' WHERE config_kepubifypath IS NULL OR LENGTH(config_kepubifypath)=0;" \
     2>/dev/null || echo "warning: could not set config_kepubifypath in app.db"
+  # Railway's edge proxy presents a different internal IP per connection
+  # and Calibre-Web's ReverseProxied never translates X-Forwarded-For
+  # into REMOTE_ADDR, so request.remote_addr varies. Flask-Login 'strong'
+  # session protection (config_session=1, the upstream default) hashes
+  # remote_addr+User-Agent into the session and logs the user out
+  # whenever it changes -- i.e. login succeeds but the very next request
+  # on a new connection bounces back to /login. 'basic' (0) keeps the
+  # user logged in and only marks the session non-fresh; Calibre-Web
+  # never uses fresh_login_required, so nothing prompts for re-auth.
+  sqlite3 "$CONFIG_DIR/app.db" \
+    "UPDATE settings SET config_session=0;" \
+    2>/dev/null || echo "warning: could not set config_session in app.db"
 fi
 
 # Set the admin password once per volume. cps.py -s creates app.db if
