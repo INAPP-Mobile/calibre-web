@@ -100,6 +100,17 @@ if [ -f "$CONFIG_DIR/app.db" ]; then
   sqlite3 "$CONFIG_DIR/app.db" \
     "UPDATE settings SET config_session=0;" \
     2>/dev/null || echo "warning: could not set config_session in app.db"
+  # The deploy form generates CW_ADMIN_PASSWORD via ${{secret(16)}},
+  # which is lowercase letters + digits only. Calibre-Web's default
+  # password policy also demands an uppercase letter AND a special
+  # character, so the generated password would be rejected by `cps.py -s`
+  # ("Password doesn't comply with password validation rules") and the
+  # admin would silently stay on the default admin123. Disable the
+  # policy check so the generated password is accepted; it is still a
+  # 16-char random secret. This must run before the -s password set below.
+  sqlite3 "$CONFIG_DIR/app.db" \
+    "UPDATE settings SET config_password_policy=0;" \
+    2>/dev/null || echo "warning: could not set config_password_policy in app.db"
 fi
 
 # Set the admin password once per volume. cps.py -s creates app.db if
