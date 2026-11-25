@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15171A"/>
+      <stop offset="100%" stop-color="#40B090"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" rx="120" fill="url(#bg)"/>
+  <!-- E-reader mark: the upstream Calibre-Web app icon is a tablet/e-reader
+       with text lines on its screen. Reproduced here as solid white geometry
+       (the 57px upstream PNG is too small to embed); teal accent #40B090 is
+       sampled from the upstream logo and UI. -->
+  <g>
+    <!-- device body -->
+    <rect x="240" y="140" width="320" height="520" rx="40" fill="#FFFFFF"/>
+    <!-- screen cutout -->
+    <rect x="270" y="170" width="260" height="400" rx="16" fill="#15171A"/>
+    <!-- text lines on the screen -->
+    <rect x="295" y="200" width="200" height="16" rx="8" fill="#FFFFFF"/>
+    <rect x="295" y="240" width="210" height="10" rx="5" fill="#FFFFFF"/>
+    <rect x="295" y="272" width="210" height="10" rx="5" fill="#FFFFFF"/>
+    <rect x="295" y="304" width="210" height="10" rx="5" fill="#FFFFFF"/>
+    <rect x="295" y="336" width="210" height="10" rx="5" fill="#FFFFFF"/>
+    <rect x="295" y="368" width="130" height="10" rx="5" fill="#FFFFFF"/>
+    <!-- home button -->
+    <circle cx="400" cy="615" r="14" fill="#15171A"/>
+  </g>
+</svg>

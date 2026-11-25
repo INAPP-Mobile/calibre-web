@@ -1,0 +1,1 @@
+{"CW_ADMIN_PASSWORD":{"defaultValue":"${{secret(16)}}","description":"Password for the admin account (username admin). Generated for you — log in with it on first run; change it later in the UI and it stays changed.","isOptional":false}}
