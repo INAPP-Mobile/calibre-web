@@ -6,7 +6,7 @@ Self-hosted ebook library — browse, search, read and download the ebooks in yo
 
 *Screenshot from the upstream Calibre-Web wiki ([janeczku/calibre-web](https://github.com/janeczku/calibre-web), GPL-3.0).*
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/calibre-web?utm_campaign=calibre-web)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/calibre-web-2)
 
 ## Source Repository
 

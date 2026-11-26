@@ -1,6 +1,6 @@
 # Deploy and Host
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/calibre-web?utm_campaign=calibre-web)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/calibre-web-2)
 
 ![Calibre-Web library view with book covers](https://raw.githubusercontent.com/INAPP-Mobile/calibre-web/main/assets/calibre-web-screenshot.png)
 
